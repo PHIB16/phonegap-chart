@@ -41,7 +41,7 @@ $(document).on("pagecreate", "#chartPage", function () {
       	data: [{
             
         type: "line",
-        dataPoints: [
+        dataPoints: dps,[
         
         {x: accX, y: time}
       
@@ -49,7 +49,7 @@ $(document).on("pagecreate", "#chartPage", function () {
       },
         {        
         type: "line",
-        dataPoints: [
+        dataPoints: dps,[
             
             {x: accY, y: time}
        
@@ -58,7 +58,7 @@ $(document).on("pagecreate", "#chartPage", function () {
       },
         {        
         type: "line",
-        dataPoints: [
+        dataPoints: dps,[
          {x: accZ, y: time}
       
         ]
