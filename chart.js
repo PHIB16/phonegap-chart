@@ -49,7 +49,7 @@ $(document).on("pagecreate", "#chartPage", function () {
 
 function startSensor() {
 	watchID = navigator.accelerometer.watchAcceleration( accelerometerSuccess, accelerometerError, accelerometerOptions);
-    updateChart();
+    
 }
 
 
@@ -67,8 +67,9 @@ function accelerometerSuccess(acceleration) {
 	var accX = acceleration.x;
 	var accY = acceleration.y;
 	var accZ = acceleration.z;
-	var time = acceleration.timestamp;
+	//var time = acceleration.timestamp;
 
+    updateChart(accX, accY, accZ);
 }
 
 function accelerometerError() {
@@ -81,10 +82,10 @@ function accelerometerError() {
 
 
 
-function updateChart() {
+function updateChart(var xPos, var yPos, var zPos) {
       	
       	//set new  y values
-      	yVal = acceleration.x;
+      	yVal = xPos;
 		
 		//x value is time since start 
 		xVal = Date.now() - startTime;
