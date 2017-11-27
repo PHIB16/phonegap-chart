@@ -12,13 +12,7 @@ $(document).on("pagecreate", "#chartPage", function () {
 	startTime = Date.now();
 	
 	//set uplistener for button
-	$('#addButton').on('click', function() {
 	
-		
-		updateChart();
-		
-	});
-    
     $("#flipswitch").on("change", function() {
 		
 		if( $(this).val() == "on" ) startSensor();
@@ -79,6 +73,7 @@ $(document).on("pagecreate", "#chartPage", function () {
 
 function startSensor() {
 	watchID = navigator.accelerometer.watchAcceleration( accelerometerSuccess, accelerometerError, accelerometerOptions);
+    updateChart();
 }
 
 
