@@ -22,6 +22,7 @@ $(document).on("pagecreate", "#chartPage", function () {
 	
 	//setup chart
     chart = new CanvasJS.Chart("chartContainer",{
+        
       	title :{
       		text: "Sensor chart"
       	},
@@ -33,11 +34,9 @@ $(document).on("pagecreate", "#chartPage", function () {
       	},
         
       	data: [{
-            
+        name = "X position"   
         type: "line",
-        dataPoints: dps,[
-        
-        {x: accX, y: time}
+        dataPoints: dps
       
         ]
       }
@@ -85,7 +84,7 @@ function accelerometerError() {
 function updateChart() {
       	
       	//set new  y values
-      	y = accelerometerSuccess;
+      	yVal = acceleration.x;
 		
 		//x value is time since start 
 		xVal = Date.now() - startTime;
