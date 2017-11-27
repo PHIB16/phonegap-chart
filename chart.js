@@ -2,6 +2,10 @@ var dps = [];   //dataPoints.
 var chart;
 var startTime;
 
+var watchID;
+var accelerometerOptions = { frequency: 1000 };  // Update every 2 seconds
+accelerometerOptions.frequency = 1000; //changed my mind - now 3 seconds
+
 $(document).on("pagecreate", "#chartPage", function () {
 	
 	//store start time in unixtime 
@@ -10,35 +14,106 @@ $(document).on("pagecreate", "#chartPage", function () {
 	//set uplistener for button
 	$('#addButton').on('click', function() {
 	
-		var randomValue = Math.random();
-		updateChart(randomValue);
 		
+		updateChart();
+		
+	});
+    
+    $("#flipswitch").on("change", function() {
+		
+		if( $(this).val() == "on" ) startSensor();
+		else if ( $(this).val() == "off" ) stopSensor();
+
 	});
 	
 	//setup chart
     chart = new CanvasJS.Chart("chartContainer",{
       	title :{
-      		text: "A random chart"
+      		text: "Sensor chart"
       	},
       	axisX: {						
-      		title: "Random Values"
-      	},
-      	axisY: {						
       		title: "Time (seconds)"
       	},
+      	axisY: {						
+      		title: "Sensor Value"
+      	},
+        
       	data: [{
-      		type: "line",
-      		dataPoints : dps
+            
+        type: "line",
+        dataPoints: [
+        
+        {x: accX, y: time}
+      
+        ]
+      },
+        {        
+        type: "line",
+        dataPoints: [
+            
+            {x: accY, y: time}
+       
+      
+        ]
+      },
+        {        
+        type: "line",
+        dataPoints: [
+         {x: accZ, y: time}
+      
+        ]
+      }
+            
+            
+            
+            
+            
+            
       	}]
    	});
 	
 	  
 });
 
-function updateChart(random) {
+
+
+function startSensor() {
+	watchID = navigator.accelerometer.watchAcceleration( accelerometerSuccess, accelerometerError, accelerometerOptions);
+}
+
+
+function stopSensor() {
+	navigator.accelerometer.clearWatch(watchID);
+			
+	var accX = 0;
+	var accX = 0;
+	var accX = 0;
+	var time = 0;
+}
+
+function accelerometerSuccess(acceleration) {
+	
+	var accX = acceleration.x;
+	var accY = acceleration.y;
+	var accZ = acceleration.z;
+	var time = acceleration.timestamp;
+
+}
+
+function accelerometerError() {
+   alert('Error');
+}
+
+
+
+
+
+
+
+function updateChart() {
       	
-      	//set new random y values
-      	yVal = random;
+      	//set new  y values
+      	y = accelerometerSuccess;
 		
 		//x value is time since start 
 		xVal = Date.now() - startTime;
