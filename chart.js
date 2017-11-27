@@ -40,30 +40,7 @@ $(document).on("pagecreate", "#chartPage", function () {
         {x: accX, y: time}
       
         ]
-      },
-        {        
-        type: "line",
-        dataPoints: dps,[
-            
-            {x: accY, y: time}
-       
-      
-        ]
-      },
-        {        
-        type: "line",
-        dataPoints: dps,[
-         {x: accZ, y: time}
-      
-        ]
       }
-            
-            
-            
-            
-            
-            
-      	}]
    	});
 	
 	  
@@ -73,7 +50,7 @@ $(document).on("pagecreate", "#chartPage", function () {
 
 function startSensor() {
 	watchID = navigator.accelerometer.watchAcceleration( accelerometerSuccess, accelerometerError, accelerometerOptions);
-    updateChart();
+    
 }
 
 
