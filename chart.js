@@ -15,7 +15,7 @@ $(document).on("pagecreate", "#chartPage", function () {
 	
     $("#flipswitch").on("change", function() {
 		
-		if( $(this).val() == "on" ) startSensor();
+		if( $(this).val() == "on" ) startSensor() ;
 		else if ( $(this).val() == "off" ) stopSensor();
 
 	});
@@ -49,7 +49,7 @@ $(document).on("pagecreate", "#chartPage", function () {
 
 function startSensor() {
 	watchID = navigator.accelerometer.watchAcceleration( accelerometerSuccess, accelerometerError, accelerometerOptions);
-    
+    updateChart();
 }
 
 
